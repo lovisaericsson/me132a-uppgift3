@@ -1,3 +1,11 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 25vh;
+  height: 50vh;
+}
+
 .student {
   background-color: white;
   border-radius: 10px;
@@ -7,7 +15,6 @@
   margin: 0.5%;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
-
 .student > div > h2 {
   margin: 0px;
   width: 100%;
