@@ -54,8 +54,8 @@ p {
   font-family: 'Nunito Sans', sans-serif;
 }
 
-label {
-  text-align: center;
-  margin-top: 12vh;
-  margin-right: 85vh;
+.filter {
+  padding: 25px;
+  margin-top: 8vh;
+  margin-left: 35vh;
 }
