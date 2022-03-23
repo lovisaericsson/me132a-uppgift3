@@ -59,10 +59,3 @@ p {
   margin-top: 8vh;
   margin-left: 35vh;
 }
-
-.input {
-  height: 20px;
-  border-radius: 5px;
-  border: 1px solid grey;
-  padding: 5px;
-}

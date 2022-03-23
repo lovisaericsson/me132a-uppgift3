@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 25vh;
-  height: 50vh;
+  margin-left: 23vh;
+  margin-right: 3vh;
 }
 
 .student {
@@ -26,4 +26,19 @@
 
 .student > div:first-child > h3 {
   color: grey;
+}
+.course {
+  border-radius: 10px;
+  padding: 1%;
+  margin: 8px;
+  border: 1px solid grey;
+}
+
+.course span:first-of-type {
+  display: block;
+  width: 100%;
+}
+
+.course > h4 {
+  margin: 0;
 }
