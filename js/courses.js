@@ -87,8 +87,12 @@ function DOMCourse(course){
         let respTitle = document.createElement("h3");
         respTitle.textContent = "Course Ressponsible:";
 
-        let respID = [DATABASE.teachers.find( teacher => teacher.teacherID == course.courseResponsible ).teacherID];
-
+      
+        //let respID = DATABASE.teachers.find( teacher => teacher.teacherId == course.courseResponsible).teacherId;
+        
+        
+        let resp = DATABASE.teachers.find( teacher => teacher.teacherId == course.courseResponsible).teacherId;
+        let respID = [resp];
 
         respEl.appendChild(respTitle);
 
@@ -188,9 +192,9 @@ function DOMTeacher( teacherID ){
 
     teacherID.forEach( id => {
         let staff = document.createElement("span");
-        let firstName = DATABASE.teachers.find( teacher => teacher.teacherID == id ).firstName;
-        let lastName = DATABASE.teachers.find( teacher => teacher.teacherID == id ).lastName;
-        let post =DATABASE.teachers.find( teacher => teacher.teacherID == id ).post;
+        let firstName = DATABASE.teachers.find( teacher => teacher.teacherId == id ).firstName;
+        let lastName = DATABASE.teachers.find( teacher => teacher.teacherId == id ).lastName;
+        let post =DATABASE.teachers.find( teacher => teacher.teacherId == id ).post;
         staff.textContent = `${firstName} ${lastName} (${post})`;
 
         container.appendChild(staff);

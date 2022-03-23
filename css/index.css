@@ -53,3 +53,7 @@ p {
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
 }
+
+.filter {
+  margin-left: 40vh;
+}
