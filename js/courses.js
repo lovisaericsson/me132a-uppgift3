@@ -87,7 +87,7 @@ function DOMCourse(course){
         let respTitle = document.createElement("h3");
         respTitle.textContent = "Course Ressponsible:";
 
-        let respID = [DATABASE.find( teacher => teacher.teacherID == course.courseResponsible ).teacherID];
+        let respID = [DATABASE.teachers.find( teacher => teacher.teacherID == course.courseResponsible ).teacherID];
 
 
         respEl.appendChild(respTitle);
