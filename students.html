@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>U3-inlämning</title>
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/students.css">
+
 </head>
     <body>
-        <label>Search Studenst By Last Name</label>
-        <input type="text" value="20px">
+        <main>
+        <div class = "filter">
+         <label>Search Students By Last Name</label>
+         <input type="text" placeholder="Write here">
+        </div>
+        <div class="listContainer"></div>
+    </main>
         <div class="header">
             <div class="icon-title">Malmö Ladok</div>
             <nav>
@@ -22,5 +30,6 @@
             </div>
         <script src="js/database.js"></script>
         <script src="js/students.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
