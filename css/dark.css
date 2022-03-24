@@ -5,15 +5,6 @@ body {
   --button-text-color: var(--background-color);
   --transition-delay: 1s;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Nunito Sans', sans-serif;
-
   transition: var(--transition-delay);
   background-color: var(--background-color);
   color: var(--text-color);
@@ -22,6 +13,7 @@ body {
 body.dark {
   --accent-color: #d0d066;
   --background-color: #333;
+  --text-color: white;
 }
 
 .theme {

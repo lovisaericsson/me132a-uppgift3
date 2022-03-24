@@ -31,6 +31,7 @@ let data = {
     filterLabelKey: "",
     DOMCreator(array) {
         let started = "started"; // to access "started" key in courses object
+        //Finns en annan funktion man kan använda för sort, istället för den där nere..
         array.sort( (a, b) => a.lastName.toLowerCase() > b.lastName.toLowerCase() );
         array.forEach( arr => arr.courses.sort( (a, b)  => a[started].year - b[started].year || a[started].semester.toLowerCase() < b[started].semester.toLowerCase() ));
 
@@ -85,7 +86,7 @@ function DOMStudent(student){
         
         return container;
     }
-
+// Gå igenom alla kursernas titlar. Först skriva alla kurserna, sedan hittar dom med hjälp av find. 
     function studentCourses(course){
         let courseName = DATABASE.courses.find( c => c.courseID == course.courseID ).title;
         let courseCredit = DATABASE.courses.find( c => c.courseID == course.courseID ).totalCredits;
