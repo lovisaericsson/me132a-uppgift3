@@ -1,7 +1,7 @@
 body {
   --accent-color: rgb(238, 76, 76);
   --background-color: white;
-  --text-color: white;
+  --text-color: black;
   --button-text-color: var(--background-color);
   --transition-delay: 1s;
 
