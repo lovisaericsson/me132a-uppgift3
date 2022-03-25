@@ -86,7 +86,7 @@ function DOMStudent(student){
         
         return container;
     }
-// Gå igenom alla kursernas titlar. Först skriva alla kurserna, sedan hittar dom med hjälp av find. 
+// Gå igenom alla kursernas titlar. Först skriva alla kurserna, sedan hittar dom med hjälp av find. l
     function studentCourses(course){
         let courseName = DATABASE.courses.find( c => c.courseID == course.courseID ).title;
         let courseCredit = DATABASE.courses.find( c => c.courseID == course.courseID ).totalCredits;
