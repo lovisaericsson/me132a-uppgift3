@@ -60,7 +60,7 @@ function DOMStudent(student){
     // inside DOMCourse, since they will only be called from inside DOMCourse.
 
     // Add Name
-    container.append(studentName(student.firstName, student.lastName, student.totalCredits));
+    container.append(studentName(student.firstName, student.lastName, student.totalCredits, container));
 
     // Add Courses
     student.courses.forEach( course => container.append(studentCourses(course)) );
@@ -72,11 +72,23 @@ function DOMStudent(student){
     // not "normal" executable code. "Normal" executable code is not executed
     // if it is placed after a return instruction.
 
-    function studentName(firstName, lastName, totalCredits){
+    function studentName(firstName, lastName, totalCredits, student){
         
         let container = document.createElement("div");
         let studentTitle = document.createElement("button");
-        studentTitle.classList.add("button");
+        studentTitle.classList.add("collapsible");
+        studentTitle.addEventListener("click", function () {
+            let courselist = student.getElementsByClassName ("course");
+            console.log(courselist.length);
+            for (let i=0; i < courselist.length; i++) {
+                if (courselist[i].style.display =="block") {
+                  console.log(courselist[i].style.display = "none");
+                } else {
+                    courselist[i].style.display = "block"
+                    
+                }
+             }  
+        });
         
         studentTitle.textContent = `${firstName} ${lastName} (total: ${totalCredits} credits)`;
 

@@ -66,8 +66,12 @@ label {
   margin-top: 12vh;
 }
 
-.button {
+.collapsible {
   width: 100%;
   font-size: 25px;
   padding: 10px;
+}
+
+.courses {
+  display: block;
 }
