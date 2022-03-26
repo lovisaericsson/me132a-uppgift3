@@ -76,7 +76,8 @@ function DOMStudent(student){
         
         let container = document.createElement("div");
         let studentTitle = document.createElement("button");
-        studentTitle.innerHTML=("h2");
+        studentTitle.classList.add("button");
+        
         studentTitle.textContent = `${firstName} ${lastName} (total: ${totalCredits} credits)`;
 
         let courseTitle = document.createElement("h3");
