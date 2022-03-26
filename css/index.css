@@ -44,12 +44,15 @@ h1 {
   font-size: 40px;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
+  margin-top: 30vh;
+  margin-left: 5vh;
 }
 
 p {
   font-size: 20px;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
+  margin-left: 5vh;
 }
 
 .filter {

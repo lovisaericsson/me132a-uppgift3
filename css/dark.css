@@ -48,3 +48,71 @@ body {
   transform: rotate(calc(var(--rotation) * 1deg));
   transition: transform var(--transition-delay);
 }
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 23vh;
+  margin-right: 3vh;
+}
+.student {
+  background-color: rgb(73, 72, 72);
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+}
+.student > div > h2 {
+  margin: 0px;
+  width: 100%;
+}
+
+.student > div:first-child {
+  width: 100%;
+}
+
+.student > div:first-child > h3 {
+  color: white;
+}
+.course {
+  background-color: rgb(73, 72, 72);
+  border-radius: 10px;
+  padding: 1%;
+  margin: 8px;
+  border: 1px solid grey;
+}
+
+.course span:first-of-type {
+  display: block;
+  width: 100%;
+}
+
+.course > h4 {
+  margin: 0;
+}
+.staff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10%;
+}
+
+.staff > h3 {
+  width: 100%;
+}
+
+.staff > div > div > span,
+.resp > div > span {
+  background-color: rgb(73, 72, 72);
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 8px;
+}
+
+.resp > div > span {
+  background-color: rgb(70, 37, 42);
+}
