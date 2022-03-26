@@ -49,6 +49,7 @@ main.prepend(DOMFilter(data));
 // DOMStudent:
 // 1) Tar emot ett argument som är ett av objekten i STUDENTS
 // 2) Returnerar ett DOM-element som placeras i .listContainer (det gör DOMFilter)
+
 function DOMStudent(student){
 
     let container = document.createElement("div");
@@ -74,8 +75,8 @@ function DOMStudent(student){
     function studentName(firstName, lastName, totalCredits){
         
         let container = document.createElement("div");
-
-        let studentTitle = document.createElement("h2");
+        let studentTitle = document.createElement("button");
+        studentTitle.innerHTML=("h2");
         studentTitle.textContent = `${firstName} ${lastName} (total: ${totalCredits} credits)`;
 
         let courseTitle = document.createElement("h3");
