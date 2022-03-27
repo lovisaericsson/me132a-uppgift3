@@ -78,11 +78,16 @@ function DOMStudent(student){
         let studentTitle = document.createElement("button");
         studentTitle.classList.add("collapsible");
         studentTitle.addEventListener("click", function () {
+            if (courseTitle.style.display =="block") {
+                courseTitle.style.display = "none";
+              } else {
+                  courseTitle.style.display = "block"
+                  
+              }
             let courselist = student.getElementsByClassName ("course");
-            console.log(courselist.length);
             for (let i=0; i < courselist.length; i++) {
                 if (courselist[i].style.display =="block") {
-                  console.log(courselist[i].style.display = "none");
+                  courselist[i].style.display = "none";
                 } else {
                     courselist[i].style.display = "block"
                     
@@ -93,6 +98,7 @@ function DOMStudent(student){
         studentTitle.textContent = `${firstName} ${lastName} (total: ${totalCredits} credits)`;
 
         let courseTitle = document.createElement("h3");
+        courseTitle.classList.add("Courses");
         courseTitle.textContent = "Courses:";
 
         container.appendChild(studentTitle);

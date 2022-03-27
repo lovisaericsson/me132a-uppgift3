@@ -43,3 +43,7 @@
 .course > h4 {
   margin: 0;
 }
+
+.Courses {
+  display: none;
+}
