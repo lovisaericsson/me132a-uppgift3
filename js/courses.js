@@ -54,7 +54,7 @@ function DOMCourse(course){
     // inside DOMCourse, since they will only be called from inside DOMCourse.
 
     // Add Title
-    container.append(courseTitle(course));
+    container.append(courseTitle(course, container));
 
     // Add Staff
     container.append(courseStaff(course));
@@ -68,10 +68,27 @@ function DOMCourse(course){
     // not "normal" executable code. "Normal" executable code is not executed
     // if it is placed after a return instruction.
 
-    function courseTitle(course){    
+    function courseTitle(course, containercourse){    
         let container = document.createElement("div");
-        container.textContent = course.title;
+        let courseTitle = document.createElement("button");
+        courseTitle.classList.add("collapsible");
+        courseTitle.textContent = course.title;
+        courseTitle.addEventListener("click",function(){
+            let resp = containercourse.getElementsByClassName ("resp");
+            let staff = containercourse.getElementsByClassName ("staff");
+            let courses = containercourse.getElementsByClassName ("students");
+            if (courses[0].style.display == "block") {
+               courses[0].style.display = "none";
+               resp[0].style.display = "none";
+               staff[0].style.display = "none";
+          } else {
+               courses[0].style.display = "block";
+               resp[0].style.display = "block";
+               staff[0].style.display = "block";
+          }
+        })
 
+        container.appendChild(courseTitle);
         return container;
     }
 
@@ -155,7 +172,7 @@ function DOMCourse(course){
         container.append(containerStudents);
 
         containerStudents.innerHTML = `
-            <div>Students:</div>
+            <h3>Students:</h3>
             <div class="list"></div>
         `;
 
