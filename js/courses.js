@@ -1,222 +1,201 @@
-"use strict";
-function DOMFilter(data){
-    
-    let {baseArray, filterKey, filterLabelKey} = data;  
-    let container = document.querySelector("filter"); 
+'use strict'
+function DOMFilter (data) {
+  let { baseArray, filterKey, filterLabelKey } = data
+  let container = document.querySelector('filter')
 
-// Event Keyup on input
-    let input = document.querySelector("input");
-    input.addEventListener("keyup", function(){
-        filterLabelKey = this.value;
-        filterLabelKey = filterLabelKey.toLowerCase();
-        clear();
-        let filteredArray = baseArray.courses.filter( obj => obj[filterKey].toLowerCase().includes(filterLabelKey) );
-        if(filterLabelKey) data.DOMCreator(filteredArray);
-    });
+  // FILTER LOWERCASE AND UPPERCASE LETTERS
+  let input = document.querySelector('input')
+  input.addEventListener('keyup', function () {
+    filterLabelKey = this.value
+    filterLabelKey = filterLabelKey.toLowerCase()
+    clear()
+    let filteredArray = baseArray.courses.filter(obj =>
+      obj[filterKey].toLowerCase().includes(filterLabelKey)
+    )
+    if (filterLabelKey) data.DOMCreator(filteredArray)
+  })
 
-    return container;    
+  return container
 }
 
-function clear() {
-   document.querySelector(".listContainer").innerHTML = "";
+// AFTER THE USER HAS SEARCHED IT IN THE SEARCH BOX, IT WILL BECOMES EMPTY
+function clear () {
+  document.querySelector('.listContainer').innerHTML = ''
 }
 
-
-// Add specific <head> stuff
-// Here's where you add <link> and <title>, specific to this page
-// Kolla i commonElements.js jag har laggt till en egen grejs där som anpassar css utifrån vilken sida den är på
-// för att undvika koddublicering.
-
-// Add Elements in main
-const main = document.querySelector("main");
+// ADD ELEMENTS IN MAIN
+const main = document.querySelector('main')
 
 let data = {
-    baseArray: DATABASE,
-    filterKey: "title",
-    filterLabelName: "Search Courses By Title",
-    filterLabelKey: "",
-    DOMCreator(array) {
-        array.sort( (a, b) => a.title.toLowerCase() > b.title.toLowerCase() );
-        array.forEach(course => {
-            document.querySelector(".listContainer").append(DOMCourse(course));
-        })
-    }
-};
-main.prepend(DOMFilter(data));
+  baseArray: DATABASE,
+  filterKey: 'title',
+  filterLabelName: 'Search Courses By Title',
+  filterLabelKey: '',
+  DOMCreator (array) {
+    array.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase())
+    array.forEach(course => {
+      document.querySelector('.listContainer').append(DOMCourse(course))
+    })
+  }
+}
+main.prepend(DOMFilter(data))
 
-function DOMCourse(course){
+function DOMCourse (course) {
+  let container = document.createElement('div')
+  container.classList.add('course')
 
-    let container = document.createElement("div");
-    container.classList.add("course");
+  // ADD TITLE
+  container.append(courseTitle(course, container))
 
-    // We add information through functions to make the code more readable.
-    // In order to organise the code we declare the functions 
-    // inside DOMCourse, since they will only be called from inside DOMCourse.
+  // ADD STAFF
+  container.append(courseStaff(course))
 
-    // Add Title
-    container.append(courseTitle(course, container));
+  // ADD STUDENTS
+  container.append(courseStudents(course))
 
-    // Add Staff
-    container.append(courseStaff(course));
+  return container
 
-    // Add Students
-    container.append(courseStudents(course));
-    
-    return container;
+  // EVENT ON THE COLLAPSIBLE BUTTON
 
-    // We can put these declarations after the return because they are function declarations,
-    // not "normal" executable code. "Normal" executable code is not executed
-    // if it is placed after a return instruction.
+  function courseTitle (course, containercourse) {
+    let container = document.createElement('div')
+    let courseTitle = document.createElement('button')
+    courseTitle.classList.add('collapsible')
+    courseTitle.textContent = course.title
+    courseTitle.addEventListener('click', function () {
+      let resp = containercourse.getElementsByClassName('resp')
+      let staff = containercourse.getElementsByClassName('staff')
+      let courses = containercourse.getElementsByClassName('students')
+      if (courses[0].style.display == 'block') {
+        courses[0].style.display = 'none'
+        resp[0].style.display = 'none'
+        staff[0].style.display = 'none'
+      } else {
+        courses[0].style.display = 'block'
+        resp[0].style.display = 'block'
+        staff[0].style.display = 'block'
+      }
+    })
 
-    function courseTitle(course, containercourse){    
-        let container = document.createElement("div");
-        let courseTitle = document.createElement("button");
-        courseTitle.classList.add("collapsible");
-        courseTitle.textContent = course.title;
-        courseTitle.addEventListener("click",function(){
-            let resp = containercourse.getElementsByClassName ("resp");
-            let staff = containercourse.getElementsByClassName ("staff");
-            let courses = containercourse.getElementsByClassName ("students");
-            if (courses[0].style.display == "block") {
-               courses[0].style.display = "none";
-               resp[0].style.display = "none";
-               staff[0].style.display = "none";
-          } else {
-               courses[0].style.display = "block";
-               resp[0].style.display = "block";
-               staff[0].style.display = "block";
-          }
-        })
+    container.appendChild(courseTitle)
+    return container
+  }
 
-        container.appendChild(courseTitle);
-        return container;
-    }
+  function courseStaff (course) {
+    let container = document.createElement('div')
 
+    // CREATING RESPONSIBLE TITLE AND NAME
+    let respEl = document.createElement('div')
+    respEl.classList.add('resp')
 
+    let respTitle = document.createElement('h3')
+    respTitle.textContent = 'Course Ressponsible:'
 
-    function courseStaff(course){
-        let container = document.createElement("div");
+    //let respID = DATABASE.teachers.find( teacher => teacher.teacherId == course.courseResponsible).teacherId;
 
-        // CREATING RESPONSIBLE TITLE AND NAME
-        let respEl = document.createElement("div");
-        respEl.classList.add("resp");
-        
-        let respTitle = document.createElement("h3");
-        respTitle.textContent = "Course Ressponsible:";
+    let resp = DATABASE.teachers.find(
+      teacher => teacher.teacherId == course.courseResponsible
+    ).teacherId
+    let respID = [resp]
 
-      
-        //let respID = DATABASE.teachers.find( teacher => teacher.teacherId == course.courseResponsible).teacherId;
-        
-        
-        let resp = DATABASE.teachers.find( teacher => teacher.teacherId == course.courseResponsible).teacherId;
-        let respID = [resp];
+    respEl.appendChild(respTitle)
 
-        respEl.appendChild(respTitle);
+    respEl.appendChild(DOMTeacher(respID))
 
-        respEl.appendChild( DOMTeacher( respID ) );
+    container.appendChild(respEl)
 
-        container.appendChild(respEl);
+    // CREATING REST OF STAFF
 
+    let staffEl = document.createElement('div')
+    staffEl.classList.add('staff')
 
-        // CREATING REST OF STAFF
+    let staffTitle = document.createElement('h3')
+    staffTitle.textContent = 'Teachers:'
+    staffEl.appendChild(staffTitle)
 
-        let staffEl = document.createElement("div");
-        staffEl.classList.add("staff");
+    let teacherEl = document.createElement('div')
+    teacherEl.appendChild(DOMTeacher(course.teachers))
 
-        let staffTitle = document.createElement("h3");
-        staffTitle.textContent = "Teachers:";
-        staffEl.appendChild(staffTitle);
+    staffEl.appendChild(teacherEl)
 
-        let teacherEl = document.createElement("div");
-        teacherEl.appendChild( DOMTeacher( course.teachers ) );
+    container.appendChild(staffEl)
 
-        staffEl.appendChild(teacherEl);
+    return container
+  }
 
-        container.appendChild(staffEl);
+  function courseStudents (course) {
+    // FIND ALL THE STUDENTS THAT HAVE STUDIED THIS COURSE
+    let students = DATABASE.students.filter(student =>
+      student.courses.find(c => c.courseID == course.courseID)
+    )
+    let studentArray = students.map(student => {
+      let specCourse = student.courses.find(c => c.courseID == course.courseID)
 
-        return container;
-    }
+      const container = {}
 
+      container.firstName = student.firstName
+      container.lastName = student.lastName
+      container.passedCredits = specCourse.passedCredits
+      container.semester = specCourse.started.semester
+      container.year = specCourse.started.year
 
+      return container
+    })
 
-    function courseStudents(course){
+    // SORT THE STUDENTS ASCENDING BY STARTED.YEAR
+    studentArray.sort((a, b) => a.year - b.year)
 
-        // First find all the students that have studied this course
-        let students = DATABASE.students.filter( student => student.courses.find( c => c.courseID == course.courseID ) );
+    // DOM-ELEMENTS
+    let containerStudents = document.createElement('div')
+    containerStudents.classList.add('students')
+    container.append(containerStudents)
 
-        // Then use the array of students that have studied the course to create 
-        // another array where each element is an object with the keys:
-        // {firstName, lastName, passedCredits (in this course), started: {year, semester} (this course) }
-        let studentArray = students.map(student => {
-
-            let specCourse = student.courses.find( c => c.courseID == course.courseID );
-
-            const container = {};
-
-            container.firstName = student.firstName;
-            container.lastName = student.lastName;
-            container.passedCredits = specCourse.passedCredits;
-            container.semester = specCourse.started.semester;
-            container.year = specCourse.started.year;
-            
-            return container;
-
-        });
-
-        // Then sort the students ascending by started.year
-        studentArray.sort( (a, b) => a.year - b.year );
-    
-        // Now do the DOM stuff
-        let containerStudents = document.createElement("div");
-        containerStudents.classList.add("students");
-        container.append(containerStudents);
-
-        containerStudents.innerHTML = `
+    containerStudents.innerHTML = `
             <h3>Students:</h3>
             <div class="list"></div>
-        `;
+        `
 
-        studentArray.forEach(student => {
-            let containerStudent = document.createElement("div");
-            containerStudent.classList.add("student");
-            
-            let studentNameCred = document.createElement("span");
-            studentNameCred.textContent = `${ student.firstName } ${ student.lastName } (${ student.passedCredits } credits)`;
-            containerStudent.appendChild(studentNameCred);
-            
-            let courseInfo = document.createElement("span");
-            courseInfo.textContent = `${ student.semester } ${ student.year }`;
-            containerStudent.appendChild( courseInfo );
+    studentArray.forEach(student => {
+      let containerStudent = document.createElement('div')
+      containerStudent.classList.add('student')
 
-            if( student.passedCredits == course.totalCredits ) {
-                containerStudent.style.backgroundColor = "#009879";
-                containerStudent.style.color = "white";
-            }
+      let studentNameCred = document.createElement('span')
+      studentNameCred.textContent = `${student.firstName} ${student.lastName} (${student.passedCredits} credits)`
+      containerStudent.appendChild(studentNameCred)
 
-            containerStudents.querySelector(".list").append(containerStudent);
-        });
-        
-        return containerStudents;
-    };
+      let courseInfo = document.createElement('span')
+      courseInfo.textContent = `${student.semester} ${student.year}`
+      containerStudent.appendChild(courseInfo)
 
+      if (student.passedCredits == course.totalCredits) {
+        containerStudent.style.backgroundColor = '#009879'
+        containerStudent.style.color = 'white'
+      }
+
+      containerStudents.querySelector('.list').append(containerStudent)
+    })
+
+    return containerStudents
+  }
 }
 
-// Eftersom du behöver skapa Teachers i två olika platser (under Course Responsible ochunder Teachers)
-// så är det enda rimliga att skapa en funktion som tar emot info om läraren och returnerar
-// ett DOM-element som kan appendas på rätt ställe.
-function DOMTeacher( teacherID ){ 
-    let container = document.createElement("div");        
+// BECAUSE YOU NEED TO CREATE TEACHERS IN TWO DIFFRENT PLACES (UNDER THE COURSE RESPONSIVE AND UNDER THE TEACHERS)
+// THEN IT IS REASONABLE TO CREATE A FUNCTION THAT RECEIVES INFO ABOUT THE TEACHERS AND RETURNS A DOM-ELEMENT
+// THAT CAN BE APPENDED IN THE RIGHT PLACE
+function DOMTeacher (teacherID) {
+  let container = document.createElement('div')
 
-    teacherID.forEach( id => {
-        let staff = document.createElement("span");
-        let firstName = DATABASE.teachers.find( teacher => teacher.teacherId == id ).firstName;
-        let lastName = DATABASE.teachers.find( teacher => teacher.teacherId == id ).lastName;
-        let post =DATABASE.teachers.find( teacher => teacher.teacherId == id ).post;
-        staff.textContent = `${firstName} ${lastName} (${post})`;
+  teacherID.forEach(id => {
+    let staff = document.createElement('span')
+    let firstName = DATABASE.teachers.find(teacher => teacher.teacherId == id)
+      .firstName
+    let lastName = DATABASE.teachers.find(teacher => teacher.teacherId == id)
+      .lastName
+    let post = DATABASE.teachers.find(teacher => teacher.teacherId == id).post
+    staff.textContent = `${firstName} ${lastName} (${post})`
 
-        container.appendChild(staff);
-    });
+    container.appendChild(staff)
+  })
 
-    return container;
-    }
-    
+  return container
+}

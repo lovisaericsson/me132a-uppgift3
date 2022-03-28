@@ -1,8 +1,25 @@
+/* This index.css contains all styles and paragraph of the website */
+
 body {
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   z-index: -2;
+}
+/* Paragraph */
+h1 {
+  font-size: 40px;
+  text-align: center;
+  font-family: "Nunito Sans", sans-serif;
+  margin-top: 30vh;
+  margin-left: 5vh;
+}
+
+p {
+  font-size: 20px;
+  text-align: center;
+  font-family: "Nunito Sans", sans-serif;
+  margin-left: 5vh;
 }
 
 .header {
@@ -21,11 +38,19 @@ body {
 .icon-title {
   color: white;
   font-size: 30px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   margin-top: 8vh;
   margin-left: 4vh;
 }
 
+/* A container of what the user should search for and the search box  */
+.filter {
+  margin-left: 30vh;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+}
+
+/* The search box */
 input {
   height: 20px;
   border-radius: 5px;
@@ -33,39 +58,13 @@ input {
   padding: 5px;
 }
 
-footer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 50px;
-}
-
-h1 {
-  font-size: 40px;
-  text-align: center;
-  font-family: 'Nunito Sans', sans-serif;
-  margin-top: 30vh;
-  margin-left: 5vh;
-}
-
-p {
-  font-size: 20px;
-  text-align: center;
-  font-family: 'Nunito Sans', sans-serif;
-  margin-left: 5vh;
-}
-
-.filter {
-  margin-left: 30vh;
-  margin-top: 5vh;
-  margin-bottom: 2vh;
-}
-
+/* What the user should search for, ex "Search Students By Last Name" */
 label {
   text-align: center;
   margin-top: 12vh;
 }
 
+/* A button that makes content visible when you press it */
 .collapsible {
   width: 100%;
   font-size: 25px;

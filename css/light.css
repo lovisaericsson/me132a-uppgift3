@@ -1,12 +1,14 @@
+/* This light.css contains all styles when you as a user change the theme to light */
+
 body {
-  --background-color: white;
+  background-color: white;
   --button-text-color: white;
   --transition-delay: 1s;
-
   transition: var(--transition-delay);
   color: var(--text-color);
 }
 
+/* The button of the theme */
 .theme {
   margin-left: -7vh;
 }
@@ -36,18 +38,4 @@ body {
 .theme-toggle-button:hover,
 .theme-toggle-button:focus {
   transform: scale(1.1);
-}
-
-.sun-moon-container {
-  --rotation: 0;
-
-  position: absolute;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  height: 200vmin;
-  transform: rotate(calc(var(--rotation) * 1deg));
-  transition: transform var(--transition-delay);
 }

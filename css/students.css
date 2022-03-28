@@ -1,3 +1,5 @@
+/* This students.css contains all styles under the category Students on the web page */
+
 .listContainer {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,7 @@
   margin-right: 3vh;
 }
 
+/* Box for each individual student */
 .student {
   background-color: white;
   border-radius: 10px;
@@ -27,6 +30,8 @@
 .student > div:first-child > h3 {
   color: grey;
 }
+
+/* Respective course titles box */
 .course {
   border-radius: 10px;
   display: none;
@@ -44,6 +49,7 @@
   margin: 0;
 }
 
+/* A box for courses title which is hidden */
 .Courses {
   display: none;
 }

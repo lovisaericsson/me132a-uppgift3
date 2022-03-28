@@ -1,3 +1,5 @@
+/* This courses.css contains all styles under the category Courses on the web page */
+
 .listContainer {
   display: flex;
   flex-direction: column;
@@ -5,6 +7,8 @@
   margin-left: 23vh;
   margin-right: 3vh;
 }
+
+/* Respective course titles box */
 .course {
   background-color: white;
   border-radius: 5px;
@@ -27,33 +31,6 @@
   width: 100%;
   margin-bottom: 10px;
 }
-.staff {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 5vh;
-}
-
-.resp {
-  display: none;
-}
-
-.staff > h3 {
-  width: 100%;
-}
-
-.staff > div > div > span,
-.resp > div > span {
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 8px;
-}
-
-.resp > div > span {
-  background-color: pink;
-}
 
 .course > div:first-child {
   width: 100%;
@@ -67,16 +44,50 @@
   margin: 0;
 }
 
+/* A box for teachers */
+.staff {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+
+.staff > h3 {
+  width: 100%;
+}
+
+/* A box for Course Ressponsible */
+.resp {
+  display: none;
+}
+
+.resp > div > span {
+  background-color: pink;
+}
+
+/* Teachers and Course Ressponsible design together */
+.staff > div > div > span,
+.resp > div > span {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 8px;
+}
+
+/* A box for all the Students */
 .students {
   flex-direction: column;
   display: none;
 }
 
+/* Design for the Students */
 .list {
   display: flex;
   flex-wrap: wrap;
 }
 
+/* Box for each individual student */
 .student {
   background-color: white;
   border-radius: 10px;
@@ -88,6 +99,7 @@
   border: 1px solid grey;
 }
 
+/* A button that makes content visible when you press it */
 .collapse {
   width: 100%;
   font-size: 25px;
