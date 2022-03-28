@@ -105,11 +105,11 @@ function DOMStudent (student) {
   }
   // GO THROUGH ALL THE COURSE TITLES
   function studentCourses (course) {
-    let courseName = DATABASE.courses.find(c => c.courseID == course.courseID)
+    let courseName = DATABASE.courses.find(c => c.courseId == course.courseId)
       .title
-    let courseCredit = DATABASE.courses.find(c => c.courseID == course.courseID)
+    let courseCredit = DATABASE.courses.find(c => c.courseId == course.courseId)
       .totalCredits
-    let started = 'started' // TO ACCESS "STARTED" KEY IN COURSES OBJECT
+    let started = 'started' // TO ACCESS "STARTED" KEY IN COURSES to access "started" key in courses object
 
     let container = document.createElement('div')
     container.classList.add('course')
