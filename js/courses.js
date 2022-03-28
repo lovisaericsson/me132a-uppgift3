@@ -18,7 +18,7 @@ function DOMFilter (data) {
   return container
 }
 
-// AFTER THE USER HAS SEARCHED IT IN THE SEARCH BOX, IT WILL BECOMES EMPTY
+// AFTER THE USER HAS SEARCHED AND SEARCH AGAIN, SEARCH RESULT WILL BECOMES EMPTY
 function clear () {
   document.querySelector('.listContainer').innerHTML = ''
 }
@@ -40,28 +40,29 @@ let data = {
 }
 main.prepend(DOMFilter(data))
 
+// ADD RESULT COURSE IN MAIN
 function DOMCourse (course) {
   let container = document.createElement('div')
   container.classList.add('course')
 
-  // ADD TITLE
+  // ADD COURSE TITLE
   container.append(courseTitle(course, container))
 
-  // ADD STAFF
+  // ADD COURSE STAFF
   container.append(courseStaff(course))
 
-  // ADD STUDENTS
+  // ADD COURSE STUDENTS
   container.append(courseStudents(course))
 
   return container
 
-  // EVENT ON THE COLLAPSIBLE BUTTON
-
+  // CREATE COURSE TITLE
   function courseTitle (course, containercourse) {
     let container = document.createElement('div')
     let courseTitle = document.createElement('button')
     courseTitle.classList.add('collapsible')
     courseTitle.textContent = course.title
+    // ADD EVENT ON THE COLLAPSIBLE BUTTON
     courseTitle.addEventListener('click', function () {
       let resp = containercourse.getElementsByClassName('resp')
       let staff = containercourse.getElementsByClassName('staff')
@@ -81,6 +82,7 @@ function DOMCourse (course) {
     return container
   }
 
+  // CREATE COURSE STAFF
   function courseStaff (course) {
     let container = document.createElement('div')
 
@@ -105,7 +107,6 @@ function DOMCourse (course) {
     container.appendChild(respEl)
 
     // CREATING REST OF STAFF
-
     let staffEl = document.createElement('div')
     staffEl.classList.add('staff')
 
@@ -123,6 +124,7 @@ function DOMCourse (course) {
     return container
   }
 
+  // CREATE COURSE STUDENTS
   function courseStudents (course) {
     // FIND ALL THE STUDENTS THAT HAVE STUDIED THIS COURSE
     let students = DATABASE.students.filter(student =>

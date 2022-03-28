@@ -18,7 +18,7 @@ function DOMFilter (data) {
   return container
 }
 
-// AFTER THE USER HAS SEARCHED IT IN THE SEARCH BOX, IT WILL BECOMES EMPTY
+// AFTER THE USER HAS SEARCHED AND SEARCH AGAIN, SEARCH RESULT WILL BECOMES EMPTY
 function clear () {
   document.querySelector('.listContainer').innerHTML = ''
 }
@@ -41,7 +41,7 @@ let data = {
           a[started].semester.toLowerCase() < b[started].semester.toLowerCase()
       )
     )
-
+    // ADD RESULT STUDENTS IN MAIN
     array.forEach(student => {
       student.totalCredits = student.courses
         .map(course => course.passedCredits)
@@ -66,16 +66,17 @@ function DOMStudent (student) {
       container
     )
   )
-  // ADD COURSES
+  // ADD COURSES FOR THE STUDENT
   student.courses.forEach(course => container.append(studentCourses(course)))
 
   return container
 
-  // EVENT ON THE COLLAPSIBLE BUTTON
+  // CREATE STUDENT NAME
   function studentName (firstName, lastName, totalCredits, student) {
     let container = document.createElement('div')
     let studentTitle = document.createElement('button')
     studentTitle.classList.add('collapsible')
+    // EVENT ON THE COLLAPSIBLE BUTTON
     studentTitle.addEventListener('click', function () {
       if (courseTitle.style.display == 'block') {
         courseTitle.style.display = 'none'
@@ -103,13 +104,13 @@ function DOMStudent (student) {
 
     return container
   }
-  // GO THROUGH ALL THE COURSE TITLES
+  // CREATE COURSE TITLES
   function studentCourses (course) {
     let courseName = DATABASE.courses.find(c => c.courseId == course.courseId)
       .title
     let courseCredit = DATABASE.courses.find(c => c.courseId == course.courseId)
       .totalCredits
-    let started = 'started' // TO ACCESS "STARTED" KEY IN COURSES to access "started" key in courses object
+    let started = 'started'
 
     let container = document.createElement('div')
     container.classList.add('course')
